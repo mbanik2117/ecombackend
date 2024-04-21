@@ -1,0 +1,15 @@
+<!-- accounts/templates/accounts/login_verification_email_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Verification</title>
+</head>
+<body>
+    <p>Dear {{ user.first_name }},</p>
+    <p>Your login verification code is: <strong>{{ verification_code }}</strong></p>
+    <p>Enter this code on the verification page to complete the login process.</p>
+    <p>Best regards,<br>InstaProperty Team</p>
+</body>
+</html>
+

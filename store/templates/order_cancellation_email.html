@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Cancellation</title>
+    <style>
+        /* Add your plain CSS styles for the email template here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .order-details {
+            margin-top: 10px;
+        }
+        .product-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .product-item {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Order Cancellation</h2>
+        <p>Dear {{ order.full_name }},</p>
+        <p>Your order with ID {{ order.order_id }} has been canceled successfully.</p>
+        
+        <div class="order-details">
+            <p><strong>Order Details:</strong></p>
+            <ul class="product-list">
+                {% for order_item in order.orderitem_set.all %}
+                    <li class="product-item">
+                        {{ order_item.product.name }} - Quantity: {{ order_item.quantity }} - Total: Rs{{ order_item.total_price }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <p><strong>Total Amount:</strong> Rs{{ order.total }}</p>
+        </div>
+        
+        <p>Thank you for shopping with us!</p>
+    </div>
+</body>
+</html>

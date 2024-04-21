@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #f6f0f0;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4f46e5;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .product {
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        .product-quantity, .product-price {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .total-amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #10b981;
+            margin-top: 16px;
+        }
+
+        .payment-mode {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Order Confirmation</div>
+        <div class="subtitle">Thank you for your order! Here are the details:</div>
+        {% for order_item in order.orderitem_set.all %}
+            <div class="product">
+                <div class="product-details">
+                    <div class="product-name">{{ order_item.product.name }}</div>
+                    <div class="product-quantity">Quantity: {{ order_item.quantity }}</div>
+                    <div class="product-price">Price: Rs{{ order_item.price }}</div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="total-amount">Total Amount: Rs{{ order.total }}</div>
+        <div class="payment-mode">Payment Mode: {{ order.payment_method }}</div>
+    </div>
+</body>
+</html>
